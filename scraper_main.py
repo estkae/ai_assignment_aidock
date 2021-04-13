@@ -7,7 +7,7 @@ import config
 from utils import save_data_to_pkl, profile
 
 #  log-file will be created in the main dir
-logging.basicConfig(filename=config.LOG_FILE, level=logging.INFO,
+logging.basicConfig(filename=config.LOG_FILE , level=logging.INFO ,
                     format='%(asctime)s - %(levelname)s - %(message)s')
 
 
@@ -20,7 +20,7 @@ def get_all_links_recipes(url_to_get):
     response = []
     try:
         page = grequests.get(url_to_get)
-        response = grequests.map([page], size=config.BATCHES)
+        response = grequests.map([page] , size=config.BATCHES)
     except AttributeError:
         logging.info("Can't collect `recipes_links` from a page")
     soup = [BeautifulSoup(res.text, 'html.parser') for res in response]
@@ -51,7 +51,7 @@ def get_all_recipes(url_to_get=config.URL):
     logging.info(f'Took out {len(urls) - len(links)} recipes_links for testing, left {len(links)} links')
     page = (grequests.get(u) for u in links)
     # get data from website
-    response = grequests.map(page, size=config.BATCHES)
+    response = grequests.map(page , size=config.BATCHES)
     for res in response:
         try:
             soup = BeautifulSoup(res.content, 'html.parser')

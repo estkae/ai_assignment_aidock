@@ -169,6 +169,7 @@ def load_data_transform_to_set(filename):
 
     # transform instructions to array and give a label 0
     instr_col = df["INSTRUCTIONS"].str.split('\n\n').to_numpy()
+    # if instr_col != 0:
     instr = np.concatenate(instr_col).reshape(-1, 1)
     instr = np.hstack((instr, np.zeros(len(instr), int).reshape(-1, 1)))
     logging.info(f'INSTRUCTIONS transformed to array and have a label 0 with shape {instr.shape}')
@@ -274,8 +275,12 @@ def tfidf(texts, vocab_size):
 
     # Turn text into  padded sequences (word --> num )
     text_sequences = tokenizer.texts_to_sequences(texts)
-
-    return tokenizer.sequences_to_matrix(text_sequences, mode='tfidf')
+    # print ('hallo')
+    # #text_sequences_fit = tokenizer.fit_on_sequences(text_sequences)
+    # print (len (text_sequences))
+    mode = 'tfidf'
+    # mode = 'binary'
+    return tokenizer.sequences_to_matrix(text_sequences, mode=mode)
 
 
 @profile

@@ -4,7 +4,9 @@ import os
 import pandas as pd
 from config import VOCAB_SIZE, LOG_FILE, TEST_LINKS_FILE
 from get_one import get_one
-from preprocess import from_list_to_str, load_data_transform_to_set, preprocess_clean_data, tfidf, eval_on_one_page
+#from preprocess import from_list_to_str, load_data_transform_to_set, preprocess_clean_data, tfidf, eval_on_one_page
+from preprocess import from_list_to_str, load_data_transform_to_set, preprocess_clean_data, tfidf
+from model_train import eval_on_one_page
 from utils import print_json
 # log-file will be created in the main dir
 logging.basicConfig(filename=LOG_FILE, level=logging.INFO,
@@ -15,8 +17,9 @@ def run_list_dir():
     """
     To test several models on several links (takes all from /data folder)
     """
-    f = open(os.pardir+'/data/'+TEST_LINKS_FILE, 'r')
-    models_list = glob.glob(f'{os.pardir}/data/' + '*.h5')
+    #f = open(os.pardir+'/data/'+TEST_LINKS_FILE, 'r')
+    f = open('data/'+TEST_LINKS_FILE, 'r')
+    models_list = glob.glob(f'data/' + '*.h5')
     list_links = [l.strip() for l in f]
     for url in list_links:
         dict_file = get_one(url)

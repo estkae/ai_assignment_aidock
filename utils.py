@@ -98,7 +98,7 @@ def print_json(url_to_get_recipe, json_file):
         print('\t\t\t\t\t\t {}'.format(str(k).strip()))
     print('\t\t\t\t]')
     print('\n\t\t' + str(list(json_file.keys())[1] + ':'))
-    print('"' + json_file['INSTRUCTIONS'][0] + '"')
+    print('"' + str(json_file['INSTRUCTIONS'][0]) + '"')
     print('}\n')
 
 
@@ -112,10 +112,10 @@ def check_dir_path(filename, what_to_do):
     """
     path = ''
     file = ''
-    if not os.path.exists(f'{os.getcwd()}/data'):
-        os.makedirs(f'{os.getcwd()}/data')
+    if not os.path.exists(f'{os.getcwd()}data'):
+        os.makedirs(f'{os.getcwd()}data')
     try:
-        path = f'{os.getcwd()}/data/{filename}'
+        path = f'{os.getcwd()}data/{filename}'
         file = open(path, what_to_do)
     except FileNotFoundError:
         logging.info(f'WTF!!!! Could not open {path}')

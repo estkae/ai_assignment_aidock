@@ -98,11 +98,14 @@ def model_train(train_data_clean_path=TRAIN_DATA_CLEAN, test_data_clean_path=TES
     :param test_data_clean_path: str - default config.TEST_DATA_CLEAN
     :return void
     """
-
-    train_data_clean = pd.read_pickle(os.getcwd() + train_data_clean_path)
+    print(os.getcwd() + '/data/' + train_data_clean_path)
+    print (train_data_clean_path)
+    train_data_clean = pd.read_pickle( train_data_clean_path)
     logging.info(f'In train {round(train_data_clean.label.value_counts() / len(train_data_clean) * 100, 2)}')
 
-    test_data_clean = pd.read_pickle(os.getcwd() + test_data_clean_path)
+    print(os.getcwd() + '/data/' + test_data_clean_path)
+    print(test_data_clean_path)
+    test_data_clean = pd.read_pickle( test_data_clean_path)
     logging.info(f'In test {round(test_data_clean.label.value_counts() / len(test_data_clean) * 100, 2)}')
 
     # max len sequence count will be constanta at the end  (it is 121 in train - we will use it)
